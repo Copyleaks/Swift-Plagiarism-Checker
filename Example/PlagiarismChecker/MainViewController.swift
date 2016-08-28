@@ -51,7 +51,7 @@ class MainViewController: UIViewController {
 
         let cloud = CopyleaksCloud(.Businesses)
         cloud.allowPartialScan = true
-        cloud.createByUrl(NSURL(string: "https://google.com")!) { (result) in
+        cloud.createByUrl(NSURL(string: "http://example.com")!) { (result) in
             self.activityIndicator.stopAnimating()
             self.showProcessResult(result)
         }
@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
         activityIndicator.startAnimating()
 
         let cloud = CopyleaksCloud(.Businesses)
-        cloud.createByText("Test me") { (result) in
+        cloud.createByText("<PLAIN TEXT FOR SCAN>") { (result) in
             self.activityIndicator.stopAnimating()
             self.showProcessResult(result)
         }

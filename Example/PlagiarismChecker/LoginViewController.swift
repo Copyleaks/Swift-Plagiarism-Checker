@@ -36,8 +36,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Sign In"
         
-        emailTextField.text = "michael@uvision.co.il"
-        keyTextField.text = "9E5A35A7-D9EE-4ABC-A11B-4BC3ACA0ACF9"
+        emailTextField.text = "<EMAIL>"
+        keyTextField.text = "<API_KEY>"
         
         if Copyleaks.isAuthorized() {
             self.performSegueWithIdentifier("showMain", sender: nil)

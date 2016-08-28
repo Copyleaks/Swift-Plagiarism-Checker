@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PlagiarismChecker'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of Plagiarism checker.'
+  s.version          = '0.9.0'
+  s.summary          = 'Copyleaks detects plagiarism and checks content distribution.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,14 +18,14 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+ Copyleaks detects plagiarism and checks content distribution. Use Copyleaks to find out if textual content is original and if it has been used online. With Copyleaks cloud you can scan files (pdf, doc, docx, ocr...), URLs and free text for plagiarism.
                        DESC
-  s.homepage         = 'https://github.com/EugeneVegner/sws-copyleaks-sdk-test'
+  s.homepage         = 'https://api.copyleaks.com'
   # s.homepage         = 'https://github.com/<GITHUB_USERNAME>/PlagiarismChecker'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Copyleaks' => 'support@copyleaks.com' }
-  s.source           = { :git => 'https://github.com/EugeneVegner/sws-copyleaks-sdk-test.git', :tag => s.version.to_s }
+  s.author           = { 'Copyleaks' => 'Support@copyleaks.com' }
+  s.source           = { :git => 'https://github.com/Copyleaks/Swift-Plagiarism-Checker.git', :tag => s.version.to_s }
   # s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/PlagiarismChecker.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
