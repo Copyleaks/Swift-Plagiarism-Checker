@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'PlagiarismChecker_Example' do
+  pod 'PlagiarismChecker', :git => 'https://github.com/EugeneVegner/sws-copyleaks-sdk-test.git', :branch => 'master'
+  # pod 'PlagiarismChecker', :path => '../'
+
+  target 'PlagiarismChecker_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
