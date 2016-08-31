@@ -128,13 +128,6 @@ extension CopyleaksRequest {
             )
             
             dispatch_async(queue ?? dispatch_get_main_queue()) {
-                if self.delegate.data != nil {
-                    let datastring = NSString(data: self.delegate.data!, encoding: NSUTF8StringEncoding)
-                    print(">>> response str: \(datastring)")
-                } else {
-                    print(">>> response str: nil")
-                }
-                
                 completionHandler(response)
             }
         }
@@ -180,7 +173,7 @@ extension CopyleaksRequest {
                 let JSON = try NSJSONSerialization.JSONObjectWithData(validData, options: options)
                 return .Success(JSON)
             } catch {
-                return .Failure(error as! NSError)
+                return .Failure(error as NSError)
             }
         }
     }

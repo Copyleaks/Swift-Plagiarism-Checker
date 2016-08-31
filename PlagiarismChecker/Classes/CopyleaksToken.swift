@@ -38,15 +38,9 @@ class CopyleaksToken: NSObject, NSCoding {
     private let copyleaksTokenExpired = "copyleaksTokenExpired"
     
     init(response: CopyleaksResponse<AnyObject, NSError>) {
-        
-        if let accessTokenVal = response.result.value?["access_token"] as? String,
-            let issuedVal = response.result.value?[".issued"] as? String,
-            let expiresVal = response.result.value?[".expires"] as? String {
-            
-            accessToken = accessTokenVal
-            issued = issuedVal
-            expires = expiresVal
-        }
+        accessToken = response.result.value?["access_token"] as? String
+        issued = response.result.value?[".issued"] as? String
+        expires = response.result.value?[".expires"] as? String
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -70,26 +64,30 @@ class CopyleaksToken: NSObject, NSCoding {
     
     func isValid() -> Bool {
         
-        guard let accessTokenVal = accessToken, issuedVal = issued, expiresVal = expires else {
-            return false
+        guard let
+            _ = accessToken,
+            _ = issued,
+            expiresVal = expires else {
+                return false
         }
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = CopyleaksConst.dateTimeFormat
         dateFormatter.timeZone = NSTimeZone(name: "UTC")
         
-        let issuedDate = dateFormatter.dateFromString(issuedVal)
         let expiresDate = dateFormatter.dateFromString(expiresVal)
 
-        return true
+        if NSDate().compare(expiresDate!) == .OrderedAscending {
+            return true
+        }
+        return false
     }
     
     func generateAccessToken() -> String {
-        if self.isValid() {
-            return "Bearer " + accessToken!
-        } else {
+        guard let accessTokenVal = accessToken else {
             return ""
         }
+        return "Bearer " + accessTokenVal
     }
     
     class func hasAccessToken() -> Bool {
@@ -100,10 +98,10 @@ class CopyleaksToken: NSObject, NSCoding {
     }
 
     class func getAccessToken() -> CopyleaksToken? {
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey(copyleaksToken) as? NSData {
-            return (NSKeyedUnarchiver.unarchiveObjectWithData(data) as? CopyleaksToken)!
+        guard let data = NSUserDefaults.standardUserDefaults().objectForKey(copyleaksToken) as? NSData else {
+            return nil
         }
-        return nil
+        return (NSKeyedUnarchiver.unarchiveObjectWithData(data) as? CopyleaksToken)!
     }
     
 

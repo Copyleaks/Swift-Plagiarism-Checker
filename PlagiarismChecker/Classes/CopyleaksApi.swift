@@ -98,8 +98,8 @@ public class CopyleaksApi {
     /* Request constructor */
   
     private func configureRequest(
-        _ URL: NSURL,
-          body: NSData? = nil) -> NSMutableURLRequest
+        URL: NSURL,
+        body: NSData? = nil) -> NSMutableURLRequest
     {
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = method.rawValue
@@ -167,8 +167,8 @@ public class CopyleaksApi {
      */
     
     public func uploadFile (
-        _ fileURL : NSURL,
-          language: String)
+        fileURL : NSURL,
+        language: String)
         -> CopyleaksRequest
     {
         let components = NSURLComponents()
@@ -178,7 +178,7 @@ public class CopyleaksApi {
         components.query = "language=" + language
         
         let boundary = generateBoundary()
-        var uploadData = NSMutableData()
+        let uploadData = NSMutableData()
         uploadData.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
         
         if let
@@ -248,10 +248,10 @@ public class CopyleaksApi {
      */
     
     public func configureOptionalHeaders(
-        _ httpCallback: String? = nil,
-          _ emailCallback: String? = nil,
-            _ clientCustomMessage: String? = nil,
-              _ allowPartialScan: Bool = false)
+        httpCallback: String? = nil,
+        _ emailCallback: String? = nil,
+          _ clientCustomMessage: String? = nil,
+            _ allowPartialScan: Bool = false)
     {
         if Copyleaks.sharedSDK.sandboxMode {
             headers["copyleaks-sandbox-mode"] = "true"

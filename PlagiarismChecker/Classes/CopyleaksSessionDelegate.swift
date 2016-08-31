@@ -109,7 +109,6 @@ public class CopyleaksSessionDelegate: NSObject, NSURLSessionDelegate, NSURLSess
      - parameter data:     A data object containing the transferred data.
      */
     public func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        print(#function)
         if let dataTaskDidReceiveData = dataTaskDidReceiveData {
             dataTaskDidReceiveData(session, dataTask, data)
         } else if let delegate = self[dataTask] as? CopyleaksRequest.DataTaskDelegate {
