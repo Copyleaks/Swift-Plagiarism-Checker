@@ -1,29 +1,59 @@
-# PlagiarismChecker
+## Copyleaks Swift SDK
 
 [![CI Status](http://img.shields.io/travis/Eugene Vegner/PlagiarismChecker.svg?style=flat)](https://travis-ci.org/Eugene Vegner/PlagiarismChecker)
 [![Version](https://img.shields.io/cocoapods/v/PlagiarismChecker.svg?style=flat)](http://cocoapods.org/pods/PlagiarismChecker)
 [![License](https://img.shields.io/cocoapods/l/PlagiarismChecker.svg?style=flat)](http://cocoapods.org/pods/PlagiarismChecker)
 [![Platform](https://img.shields.io/cocoapods/p/PlagiarismChecker.svg?style=flat)](http://cocoapods.org/pods/PlagiarismChecker)
 
-## Example
+Copyleaks SDK is a simple framework that allows you to scan textual content for plagiarism and trace content online, using the [Copyleaks plagiarism checker cloud](https://copyleaks.com/).
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+Detect plagiarism using Copyleaks SDK in:
+- Online content and webpages
+- Local and cloud files ([see supported files](https://api.copyleaks.com/Documentation/TechnicalSpecifications/#non-textual-formats"))
+- Free text
+- OCR (Optical Character Recognition) - scanning pictures with textual content ([see supported files](https://api.copyleaks.com/Documentation/TechnicalSpecifications/#ocr-formats))
 
 ## Installation
 
-PlagiarismChecker is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+Copyleaks Plagiarism Checker is available on [CocoaPods](https://cocoapods.org/?q=copyleaks). To install, simply add the following line to your Podfile:
 
 ```ruby
 pod "PlagiarismChecker"
 ```
 
-## Author
+## Usage
 
-Copyleaks, support@copyleaks.com
+First, login with your api-key and email:
+```ruby
+ let cloud = CopyleaksCloud(.Businesses)
+            cloud.login(email, apiKey: key, success: { (result) in
+                self.activityIndicator.stopAnimating()
+```
 
-## License
+Then you can start to scan content for plagiarism. For example, scan picture with textual content for plagirism:
+```ruby
+cloud.createByOCR(fileURL: NSURL(string: imagePath)!, language: "English") { (result) in
+            self.activityIndicator.stopAnimating()
+```
 
-PlagiarismChecker is available under the MIT license. See the LICENSE file for more info.
+Methods `create_by_url`, `create_by_file`, `create_by_text`, `status`, `result` and `list` returns `CopyleaksApi::CopyleaksProcess` objects. You will get back the status `Finished` if the process finished running.
+
+
+If you want to disable all callbacks you can add the header `no_callbak: true ` to any of the 'create' methods (`no_http_callback` or `no_email_callback` to disable only one). `no_custom_fields` works the same way.
+
+### Errors
+
+| Class | Description |
+|-------|------------|
+BasicError | Superclass error 
+BadCustomFieldError | Given custom fields didnt pass validation (key/value/overall size is to large)
+BadFileError | Given file is too large
+BadEmailError | Given call back email is invalid
+BadUrlError | Given callback url is invalid
+UnknownLanguageError | Given OCR language is invalid
+BadResponseError | Reponse from API is not 200 code
+ManagedError | Reponse contains Copyleaks managed error code (see list [here](https://api.copyleaks.com/Documentation/ErrorList))
+
+##Examples
+
+For a fast testing, clone the repo, and run `pod install` from the Example directory first with your email and api_key values.
