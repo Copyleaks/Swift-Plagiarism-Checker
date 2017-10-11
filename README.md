@@ -54,6 +54,6 @@ UnknownLanguageError | Given OCR language is invalid
 BadResponseError | Response from API is not 200 code
 ManagedError | Response contains Copyleaks managed error code (see list [here](https://api.copyleaks.com/Documentation/ErrorList))
 
-##Examples
+###Examples
 
 For a fast testing, clone the repo, and run `pod install` from the Example directory first with your email and api_key values.
