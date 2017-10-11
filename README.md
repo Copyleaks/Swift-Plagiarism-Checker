@@ -34,7 +34,7 @@ cloud.createByOCR(fileURL: NSURL(string: imagePath)!, language: "English") { (re
 Methods `create_by_url`, `create_by_file`, `create_by_text`, `status`, `result` and `list` returns `CopyleaksApi::CopyleaksProcess` objects. You will get back the status `Finished` if the process finished running.
 
 
-If you want to disable all callbacks you can add the header `no_callbak: true ` to any of the 'create' methods (`no_http_callback` or `no_email_callback` to disable only one). `no_custom_fields` works the same way.
+If you want to disable all callbacks you can add the header `no_callback: true ` to any of the 'create' methods (`no_http_callback` or `no_email_callback` to disable only one). `no_custom_fields` works the same way.
 
 ### Errors
 
