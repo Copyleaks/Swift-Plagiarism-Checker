@@ -1,9 +1,4 @@
-## Copyleaks Swift SDK
-
-[![CI Status](http://img.shields.io/travis/Eugene Vegner/PlagiarismChecker.svg?style=flat)](https://travis-ci.org/Eugene Vegner/PlagiarismChecker)
-[![Version](https://img.shields.io/cocoapods/v/PlagiarismChecker.svg?style=flat)](http://cocoapods.org/pods/PlagiarismChecker)
-[![License](https://img.shields.io/cocoapods/l/PlagiarismChecker.svg?style=flat)](http://cocoapods.org/pods/PlagiarismChecker)
-[![Platform](https://img.shields.io/cocoapods/p/PlagiarismChecker.svg?style=flat)](http://cocoapods.org/pods/PlagiarismChecker)
+## Copyleaks API Swift SDK
 
 Copyleaks SDK is a simple framework that allows you to scan textual content for plagiarism and trace content online, using the [Copyleaks plagiarism checker cloud](https://copyleaks.com/).
 
@@ -54,6 +49,6 @@ UnknownLanguageError | Given OCR language is invalid
 BadResponseError | Response from API is not 200 code
 ManagedError | Response contains Copyleaks managed error code (see list [here](https://api.copyleaks.com/Documentation/ErrorList))
 
-###Examples
+### Examples
 
 For a fast testing, clone the repo, and run `pod install` from the Example directory first with your email and api_key values.
